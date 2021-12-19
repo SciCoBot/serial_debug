@@ -1,5 +1,5 @@
 /***********************************************************************************
- *  @file       serialDebug.cpp
+ *  @file       serial_debug.cpp
  *  Project     serial_debug
  *  @brief      Arduino Due library with functions and macros to help debug code.
  *
