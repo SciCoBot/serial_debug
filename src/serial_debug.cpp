@@ -31,7 +31,7 @@
  * SOFTWARE.
 **********************************************************************************/
 #include <Arduino.h>
-#include <serial_debug.h>
+#include "serial_debug.h"
 
 #ifdef SERIAL_DEBUG_ENABLE
 	
