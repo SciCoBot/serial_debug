@@ -98,5 +98,5 @@
 
 	#else
 	//NONE
-#endif
+#endif //SERIAL_DEBUG_ENABLE
 	
