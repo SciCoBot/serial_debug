@@ -31,8 +31,8 @@
  * SOFTWARE.
 **********************************************************************************/
 
-#ifndef SERIAL_DEBUG.H
-#define SERIAL_DEBUG.H
+#ifndef SERIAL_DEBUG_H
+#define SERIAL_DEBUG_H
 
 #define SERIAL_DEBUG_ENABLE 
 
@@ -78,5 +78,5 @@
 	#else
 	//NONE
 	
-#endif
-#endif	
+#endif //SERIAL_DEBUG_ENABLE
+#endif //SERIAL_DEBUG_H
