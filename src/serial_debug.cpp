@@ -98,4 +98,10 @@ void Debug::debugReceiveTimeout(char* messageReceive, uint32_t timeout)
 	this->DEBUGLN();
 }
 
+<<<<<<< HEAD
+=======
+	#else
+	//NONE
+#endif
+>>>>>>> parent of fb6fcca... Update serial_debug.cpp
 	
