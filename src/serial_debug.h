@@ -1,5 +1,5 @@
 /***********************************************************************************
- *  @file       serial_debug.h
+ *  @file       serialDebug.h
  *  Project     serial_debug
  *  @brief      Arduino Due library with functions and macros to help debug code.
  *
@@ -34,49 +34,49 @@
 #ifndef SERIAL_DEBUG_H
 #define SERIAL_DEBUG_H
 
-#define SERIAL_DEBUG_ENABLE 
+#define DEBUG getSerial().print
 
-#ifdef SERIAL_DEBUG_ENABLE
-	#define SERIALDEBUG Serial 
-	#define DEBUG SERIALDEBUG.print
-	#define DEBUGLN SERIALDEBUG.println
-	
-	#define SEPARATOR(){ 																										\
-	SERIALDEBUG.println("-----------------------------------------------------------------"); 			\
-	SERIALDEBUG.println();																										\
-	}
-	
-	#define DEBUG_PRINT_FILE(){												\
-		DEBUG("File name: ");													\
-		DEBUGLN(__FILE__);														\
-		DEBUGLN();																	\
-		}
+#define DEBUGLN getSerial().println
 
-	#define DEBUG_PRINT_LINE(){												\
-		 DEBUG("Line: ");															\
-		 DEBUGLN(__LINE__);														\
-		 DEBUGLN();																	\
-	}
+#define SEPARATOR() getSerial().println("-----------------------------------------------------------------")       \
 
-	#define DEBUG_PRINT_PRETTY_FUNCTION(){									\
-		 DEBUG("Function: ");													\
-		 DEBUGLN(__PRETTY_FUNCTION__);										\
-		 DEBUGLN();																	\
-	}
+#define DEBUG_PRINT_FILE(object){                       \
+ object.DEBUG("File name: ");                         \
+ object.DEBUGLN(__FILE__);                            \
+ object.DEBUGLN();                                  \
+ }
 
-	#define PRINTVARIABLE(variableName, variable){						\
-	  DEBUG(variableName);														\
-	  DEBUG(": ");																	\
-	  DEBUGLN(variable);															\
-	  SEPARATOR();																	\
-	}
-	
-	void debugTime();                                                          
+#define DEBUG_PRINT_LINE(object){                       \
+  object.DEBUG("Line: ");                             \
+  object.DEBUGLN(__LINE__);                           \
+  object.DEBUGLN();                                 \
+}
 
-	void debugTimeBreak(char* messageReceive = "Waiting a message...", uint32_t timeout = 5000);
+#define DEBUG_PRINT_PRETTY_FUNCTION(object){                  \
+  object.DEBUG("Function: ");                         \
+  object.DEBUGLN(__PRETTY_FUNCTION__);                    \
+  object.DEBUGLN();                                 \
+}
+
+#define PRINTVARIABLE(variable, object){            \
+ object.DEBUG(#variable);                            \
+ object.DEBUG(": ");                                  \
+ object.DEBUGLN(variable);                              \
+ object.DEBUGLN();                              \
+}
+
+class Debug{
 	
-	#else
-	//NONE
+	public:
 	
-#endif //SERIAL_DEBUG_ENABLE
+		void debugTime(); 
+		Debug(Stream& serial):_serial(serial){}
+		Stream& getSerial();                                                         
+		void debugReceiveTimeout(char* messageReceive = "Waiting a message...", uint32_t timeout = 5000);
+		
+	private:
+		Stream& _serial;
+	
+};
+
 #endif //SERIAL_DEBUG_H
