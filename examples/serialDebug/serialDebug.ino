@@ -1,5 +1,5 @@
 /***********************************************************************************
- *  @file       serial_debug.h
+ *  @file       serialDebug.ino
  *  Project     serial_debug
  *  @brief      Arduino Due library with functions and macros to help debug code.
  *
@@ -31,52 +31,51 @@
  * SOFTWARE.
 **********************************************************************************/
 
-#ifndef SERIAL_DEBUG_H
-#define SERIAL_DEBUG_H
 
-#define SERIAL_DEBUG_ENABLE 
+// Note: By default the library uses Serial to print as messages.
+// If you need to use another Serial (Serial1, Serial2...), 
+// go FIRST to the serial_debug.h file and change "Serial" from 
+// "#define SERIALDEBUG Serial" to Serial you need
 
-#ifdef SERIAL_DEBUG_ENABLE
-	#define SERIALDEBUG Serial 
-	#define DEBUG SERIALDEBUG.print
-	#define DEBUGLN SERIALDEBUG.println
-	
-	#define SEPARATOR(){ 																										\
-	SERIALDEBUG.println("-----------------------------------------------------------------"); 			\
-	SERIALDEBUG.println();																										\
-	}
-	
-	#define DEBUG_PRINT_FILE(){												\
-		DEBUG("File name: ");													\
-		DEBUGLN(__FILE__);														\
-		DEBUGLN();																	\
-		}
+#include<serial_debug.h>
 
-	#define DEBUG_PRINT_LINE(){												\
-		 DEBUG("Line: ");															\
-		 DEBUGLN(__LINE__);														\
-		 DEBUGLN();																	\
-	}
+void funcTest()
+{
+  // Print file name
+  DEBUG_PRINT_FILE();
+  // Print line of this file
+  DEBUG_PRINT_LINE();
+  // Print function name
+  DEBUG_PRINT_PRETTY_FUNCTION();
+}
 
-	#define DEBUG_PRINT_PRETTY_FUNCTION(){									\
-		 DEBUG("Function: ");													\
-		 DEBUGLN(__PRETTY_FUNCTION__);										\
-		 DEBUGLN();																	\
-	}
+// Define global variables
+int variableIntTest = 5;
+char* variableCharTest = "hello world";
 
-	#define PRINTVARIABLE(variableName, variable){						\
-	  DEBUG(variableName);														\
-	  DEBUG(": ");																	\
-	  DEBUGLN(variable);															\
-	  SEPARATOR();																	\
-	}
-	
-	void debugTime();                                                          
+void setup() 
+{
+  // Library does not initialize Serial
+  Serial.begin(9600); 
 
-	void debugTimeBreak(char* messageReceive = "Waiting a message...", uint32_t timeout = 5000);
-	
-	#else
-	//NONE
-	
-#endif //SERIAL_DEBUG_ENABLE
-#endif //SERIAL_DEBUG_H
+  // Print message
+  DEBUGLN("Debug init...");  
+}
+
+void loop() 
+{
+  // Wait for a serial message to be received for a specified amount of time (default 5 sec)
+  debugTimeBreak();
+
+  //print the value of a variable
+  PRINTVARIABLE("variableIntTest", variableIntTest);
+
+  //print the value of a variable
+  PRINTVARIABLE("variableCharTest", variableCharTest);
+  
+  funcTest();
+  
+  Serial.print("Running time up to this point: ");
+  //format: hours:minutes:seconds:milliseconds 
+  debugTime();
+}

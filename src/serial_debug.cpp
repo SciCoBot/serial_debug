@@ -1,5 +1,5 @@
 /***********************************************************************************
- *  @file       serialDebug.cpp
+ *  @file       serial_debug.cpp
  *  Project     serial_debug
  *  @brief      Arduino Due library with functions and macros to help debug code.
  *
@@ -33,69 +33,70 @@
 #include <Arduino.h>
 #include "serial_debug.h"
 
-
-Stream& Debug::getSerial()
-{
-	return _serial;
-}
+#ifdef SERIAL_DEBUG_ENABLE
 	
-void Debug::debugTime()                                                           
-{    
-	unsigned long timeNowInMillis = millis();                                               
-	unsigned long hour = timeNowInMillis / (60UL * 60 * 1000);                                 
-	unsigned long minute = (timeNowInMillis / (60UL * 1000)) % 60;                                
-	unsigned long second = (timeNowInMillis / (1000UL)) % 60;                                    
-	unsigned long millisecond = timeNowInMillis % 1000;
-		                            
-	char *millisecondsZeros;                                            	
-	if(millisecond > 99)
-	{
-		millisecondsZeros = "";
-	}
-	else if(millisecond > 9)
-	{
-		millisecondsZeros = "0";
-	}
-	else
-	{
-		millisecondsZeros = "00";
-	}
-	
-	this->DEBUG(hour); 
-	this->DEBUG(":"); 
-	this->DEBUG(minute); 
-	this->DEBUG(":"); 
-	this->DEBUG(second); 
-	this->DEBUG(":"); 
-	this->DEBUG(millisecondsZeros); 
-	this->DEBUGLN(millisecond); 
-	this->DEBUGLN();
-}
-
-void Debug::debugReceiveTimeout(char* messageReceive, uint32_t timeout)
-{
-	this->DEBUGLN(messageReceive);
-	unsigned long tempTimeNowInMillis = millis(); 
-	unsigned long tempTimeBeforeInMillis;
-	String response = ""; 
-	
-	while((millis() - tempTimeNowInMillis) < timeout) 
-	{
-		if (this->getSerial() .available() > 0) 
+	void debugTime()                                                           
+	{    
+		unsigned long timeNowInMillis = millis();                                               
+		unsigned long hour = timeNowInMillis / (60UL * 60 * 1000);                                 
+		unsigned long minute = (timeNowInMillis / (60UL * 1000)) % 60;                                
+		unsigned long second = (timeNowInMillis / (1000UL)) % 60;                                    
+		unsigned long millisecond = timeNowInMillis % 1000;
+			                            
+		char *millisecondsZeros;                                            	
+		if(millisecond > 99)
 		{
-			response.concat((char) Serial.read());
+			millisecondsZeros = "";
 		}
+		else if(millisecond > 9)
+		{
+			millisecondsZeros = "0";
+		}
+		else
+		{
+			millisecondsZeros = "00";
+		}
+		
+		DEBUG(hour); 
+		DEBUG(":"); 
+		DEBUG(minute); 
+		DEBUG(":"); 
+		DEBUG(second); 
+		DEBUG(":"); 
+		DEBUG(millisecondsZeros); 
+		DEBUGLN(millisecond); 
+		SEPARATOR();
 	}
-	if(response != "")
-	{
-		this->DEBUG("I received: ");
-		this->DEBUGLN(response);
-	}
-	else
-	{
-		this->DEBUGLN("Time exceeded");
-	}
-	this->DEBUGLN();
-}
 
+	
+	void debugTimeBreak(char* messageReceive, uint32_t timeout)
+	{
+		DEBUGLN(messageReceive);
+		unsigned long tempTimeNowInMillis = millis(); 
+		unsigned long tempTimeBeforeInMillis;
+		String response = ""; 
+		
+		while((millis() - tempTimeNowInMillis) < timeout) 
+		{
+			if (SERIALDEBUG.available() > 0) 
+			{
+				response.concat((char) Serial.read());
+			}
+		}
+		if(response != "")
+		{
+			DEBUG("I received: ");
+			DEBUGLN(response);
+		}
+		else
+		{
+			DEBUGLN("Time exceeded");
+		}
+		SEPARATOR();
+	}
+	
+
+	#else
+	//NONE
+#endif //SERIAL_DEBUG_ENABLE
 	
