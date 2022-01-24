@@ -12,16 +12,16 @@ https://www.arduino.cc/en/Hacking/libraryTutorial
 
 ## Comandos
 ### Macros:
-- **DEBUG:** funciona como Serial.print. Envia uma mensagem serial que pode ser visualizada em serial monitor.
-- **DEBUGLN:** funciona como Serial.println. Envia uma mensagem serial seguida de uma linha em branco, que pode ser visualizada em serial monitor. 
-- **SEPARATOR:** Usado para imprimir na tela vários "-", a fim de separar visualmente conteúdos de mensagens.
-- **DEBUG_- PRINT_FILE:** mostra o nome do arquivo no qual o código que está sendo executado no momento pertence.
-- **DEBUG_PRINT_LINE:** mostra a linha do arquivo no qual o código que está sendo executado no momento pertence.
-- **DEBUG_PRINT_PRETTY_FUNCTION:** mostra o nome da função no qual o código que está sendo executado no momento pertence.
-- **PRINTVARIABLE:** mostra o nome e o valor de uma variável.
+- **DEBUG():** funciona como *Serial.print()*. Envia uma mensagem serial que pode ser visualizada em serial monitor.
+- **DEBUGLN():** funciona como *Serial.println()*. Envia uma mensagem serial seguida de uma linha em branco, que pode ser visualizada em serial monitor. 
+- **SEPARATOR():** Usado para imprimir na tela vários "-", a fim de separar visualmente conteúdos de mensagens.
+- **DEBUG_- PRINT_FILE():** mostra o nome do arquivo referente ao código que está sendo executado no momento.
+- **DEBUG_PRINT_LINE():** mostra a linha do arquivo referente ao código que está sendo executado no momento.
+- **DEBUG_PRINT_PRETTY_FUNCTION():** mostra o nome da função no qual o código que está sendo executado no momento pertence.
+- **PRINTVARIABLE(variableName, variable):** mostra o nome e o valor de uma variável.
 
 ### Funções:
-- **debugTime:** mostra o tempo de execução no momento de execução, no formato: horas:minutos:segundos:milissegundo  
+- **debugTime:** mostra o tempo de execução até o momento, no formato: horas:minutos:segundos:milissegundo  
 - **debugTimeBreak:** espera (por default 5 segundos) receber uma mensagem serial e, ao receber, envia a mensagem via serial, que por sua vez, pode ser visualizada em serial monitor.
 
 ## Como utilizar
