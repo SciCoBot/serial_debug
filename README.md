@@ -2,6 +2,13 @@
 [![platform badge](https://img.shields.io/badge/platform-Arduino-orange.svg)](https://github.com/arduino)
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/JoaoLopesF/SerialDebug/blob/master/LICENSE.txt)
 
+## Contents
+
+- [Sobre](#sobre)
+- [Comandos Básicos](#comandos)
+- [Como Utilizar](#como-utilizar)
+- [Possíveis Atualizações](#implementações-futuras)
+
 ## Sobre
 
 A IDE oficial do Arduino não possui depurador. Por isso, geralmente usa-se mensagens Serial como forma de depuração no Arduino, como *Serial.print(...)*.
