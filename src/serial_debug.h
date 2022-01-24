@@ -34,8 +34,6 @@
 #ifndef SERIAL_DEBUG_H
 #define SERIAL_DEBUG_H
 
-#define SERIAL_DEBUG_ENABLE 
-
 #ifdef SERIAL_DEBUG_ENABLE
 	#define SERIALDEBUG Serial 
 	#define DEBUG SERIALDEBUG.print
@@ -78,5 +76,4 @@
 	#else
 	//NONE
 	
-#endif //SERIAL_DEBUG_ENABLE
 #endif //SERIAL_DEBUG_H
