@@ -7,7 +7,7 @@
 - [Sobre](#sobre)
 - [Comandos Básicos](#comandos)
 - [Como Utilizar](#como-utilizar)
-- [Possíveis Atualizações](#implementações-futuras)
+- [Implementações Futuras](#implementações-futuras)
 
 ## Sobre
 
@@ -45,6 +45,6 @@ Neste aspecto, serial_debug é uma biblioteca que fornece macros e funções par
 
 - Teste o exemplo.
 
-## Implementações futuras
+## Implementações Futuras
 - Testes automáticos.
 
