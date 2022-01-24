@@ -5,7 +5,7 @@
 ## Contents
 
 - [Sobre](#sobre)
-- [Comandos Básicos](#comandos)
+- [Comandos Básicos](#comandos-básicos)
 - [Como Utilizar](#como-utilizar)
 - [Implementações Futuras](#implementações-futuras)
 
@@ -15,8 +15,13 @@ A IDE oficial do Arduino não possui depurador. Por isso, geralmente usa-se mens
 
 Neste aspecto, serial_debug é uma biblioteca que fornece macros e funções para auxiliar na depuração serial para Arduino, sem a necessidade de hardware extra para isso.
 
-## Comandos
+## Comandos Básicos
+### Definições:
+
+- **SERIALDEBUG:** define a serial utilizada (SERIAL1, SERIAL2, SERIAL3);
+
 ### Macros:
+
 - **DEBUG():** funciona como *Serial.print()*. Envia uma mensagem serial que pode ser visualizada em serial monitor.
 - **DEBUGLN():** funciona como *Serial.println()*. Envia uma mensagem serial seguida de uma linha em branco, que pode ser visualizada em serial monitor. 
 - **SEPARATOR():** Usado para imprimir na tela vários "-", a fim de separar visualmente conteúdos de mensagens.
@@ -26,6 +31,7 @@ Neste aspecto, serial_debug é uma biblioteca que fornece macros e funções par
 - **PRINTVARIABLE(variableName, variable):** mostra o nome e o valor de uma variável.
 
 ### Funções:
+
 - **debugTime:** mostra o tempo de execução até o momento, no formato: horas:minutos:segundos:milissegundo  
 - **debugTimeBreak:** espera receber uma mensagem, por default 5 segundos. Após esse tempo a mensagem recebida é, então, enviada via serial para ser visualizada no serial monitor.
 
