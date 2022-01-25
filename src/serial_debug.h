@@ -34,7 +34,8 @@
 #ifndef SERIAL_DEBUG_H
 #define SERIAL_DEBUG_H
 
-#ifdef SERIAL_DEBUG_ENABLE
+#include "Arduino.h"
+	
 	#define SERIALDEBUG Serial 
 	#define DEBUG SERIALDEBUG.print
 	#define DEBUGLN SERIALDEBUG.println
